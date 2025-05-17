@@ -14,7 +14,7 @@ data:
   use_horizontal_flip: false
 logging:
   folder: /Logging/vit_base
-  write_tag: ijepa_gsoc
+  write_tag: ijepa_cms
 mask:
   allow_overlap: false
   aspect_ratio:
