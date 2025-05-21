@@ -2,7 +2,7 @@
 
 
 ## Project aim
-The aim of the project is to investigate on the use of an I-JEPA architecture for the self-supervised pre-training stage on unlabeled data from the CMS experiment. The pre-training stage is validated fine-tuning by linear probing the frozen pre-trained models on a downstream binary particle classification task.
+The project aims to investigate the use of an I-JEPA architecture for the self-supervised pre-training stage on unlabeled data from the CMS experiment. The pre-training stage is validated by fine-tuning linear probing of the frozen pre-trained models on a downstream binary particle classification task.
 
 
 ## Code
@@ -10,14 +10,14 @@ You can run the following line of code to start the training of a model with a g
 ```bash
 python main.py --fname /configs/vit_b_14.yaml devices cuda:0
 ```
-Moreover, specifying the number of layers to unfreeze in the config file, you can linear probe or fine tune a model with the line:
+Moreover, specifying the number of layers to unfreeze in the config file, you can linear probe or fine-tune a model with the line:
 ```bash
 python linear_probing.py  --fname configs/probing_vit_b_14.yaml --devices cuda:0
 ```
 
 
 ## Results
-Those are the obtained results. All scores are ROC-AUC metric. To read more about those results check out the second blogpost.
+Those are the obtained results. All scores are ROC-AUC metrics.
 
 | Model Name      |  Scratch        | Linear probing | Fine-tuning        |
 | --------------- | --------------- | -------------- | ------------------ |
