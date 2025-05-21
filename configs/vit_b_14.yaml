@@ -5,15 +5,15 @@ data:
   - 0.3
   - 1.0
   crop_size: 126
-  image_folder: /Data/Dataset_normalized.h5
+  image_folder: /content/Data/Dataset_normalized.h5
   num_workers: 2
   pin_mem: true
-  root_path: /Data/Dataset_normalized.h5
+  root_path: /content/Data/Dataset_normalized.h5
   use_color_distortion: false
   use_gaussian_blur: false
   use_horizontal_flip: false
 logging:
-  folder: /Logging/vit_base
+  folder: /content/Logging/vit_base
   write_tag: ijepa_cms
 mask:
   allow_overlap: false

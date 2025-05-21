@@ -188,6 +188,7 @@ def main(args, resume_preempt=False):
     optimizer, scaler, scheduler, wd_scheduler = init_opt(
         encoder=encoder,
         predictor=predictor,
+        lr_scheduler='cosine',
         wd=wd,
         final_wd=final_wd,
         start_lr=start_lr,
