@@ -5,15 +5,15 @@ data:
   - 0.3
   - 1.0
   crop_size: 126
-  image_folder: /content/Data/Dataset_normalized.h5
+  image_folder: /kaggle/working/Data/Dataset_normalized.h5
   num_workers: 2
   pin_mem: true
-  root_path: /content/Data/Dataset_normalized.h5
+  root_path: /kaggle/working/Data/Dataset_normalized.h5
   use_color_distortion: false
   use_gaussian_blur: false
   use_horizontal_flip: false
 logging:
-  folder: /content/Logging/vit_base
+  folder: /kaggle/working/Logging/vit_base
   write_tag: ijepa_cms
 mask:
   allow_overlap: false
@@ -42,7 +42,7 @@ optimization:
   ema:
   - 0.996
   - 1.0
-  epochs: 30
+  epochs: 15
   final_lr: 1.0e-06
   final_weight_decay: 0.4
   ipe_scale: 1.0
