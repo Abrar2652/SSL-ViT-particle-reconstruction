@@ -6,14 +6,14 @@ data:
   num_workers: 2
   patch_size: 14
   pin_mem: true
-  root_path: # Data path
+  root_path: /kaggle/working/Data/Dataset_normalized.h5 # Data path
 logging:
-  folder: # Logging folder
+  folder: /kaggle/working/Logging/vit_base  # Logging folder
   write_tag: probing_ijepa
 meta:
   model_name: vit_base
   num_unfreeze_layers: 3
-  pretrained_path: # Path to pre-trained checkpoint
+  pretrained_path: /kaggle/working/Logging/vit_base/Classification/classification_model.pth.tar # Path to pre-trained checkpoint
   use_batch_norm: false
   use_hidden_layer: false
 optimization:
