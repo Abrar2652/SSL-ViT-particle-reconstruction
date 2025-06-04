@@ -11,7 +11,7 @@ logging:
   folder: /kaggle/working/Logging/vit_base  # Logging folder
   write_tag: probing_ijepa
 meta:
-  model_name: vit_base
+  model_name: vit_base # modify
   num_unfreeze_layers: 3
   pretrained_path: /kaggle/working/Logging/vit_base/Classification/classification_model.pth.tar # Path to pre-trained checkpoint
   use_batch_norm: false
