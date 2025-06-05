@@ -188,7 +188,6 @@ def main(args, resume_preempt=False):
     optimizer, scaler, scheduler, wd_scheduler = init_opt(
         encoder=encoder,
         predictor=predictor,
-        lr_scheduler='cosine',
         wd=wd,
         final_wd=final_wd,
         start_lr=start_lr,
@@ -247,7 +246,7 @@ def main(args, resume_preempt=False):
             torch.save(save_dict, save_path.format(epoch=f'{epoch + 1}'))
 
     # -- Early stopping parameters
-    patience = 0  
+    patience = 1  
     best_val_loss = float('inf') 
     epochs_no_improve = 0 
     delta = 0.00001
