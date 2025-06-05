@@ -194,6 +194,7 @@ def main(args, resume_preempt=False):
         ref_lr=lr,
         final_lr=final_lr,
         iterations_per_epoch=ipe,
+	lr_scheduler = 'cosine',
         warmup=warmup,
         num_epochs=num_epochs,
         ipe_scale=ipe_scale,
