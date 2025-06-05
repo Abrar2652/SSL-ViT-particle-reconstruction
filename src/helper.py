@@ -3,16 +3,6 @@ import sys
 
 import torch
 
-import src.models.vision_transformer as vit
-import src.models.resnet as resnet
-from src.models.barlow_twins import BarlowTwins
-from src.utils.schedulers import (
-    WarmupCosineSchedule,
-    CosineWDSchedule)
-
-from src.utils.optimizers import LARS
-from src.utils.tensors import trunc_normal_
-
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logger = logging.getLogger()
 
