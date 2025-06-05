@@ -45,7 +45,7 @@ def init_model(
         embed_dim = encoder_ijepa.embed_dim
     
         checkpoint = torch.load(pretrained_path)
-        encoder_ijepa.load_state_dict(checkpoint['target_encoder'])
+        # encoder_ijepa.load_state_dict(checkpoint['target_encoder'])
         model = LinearProbe(encoder_ijepa, embed_dim, num_classes, use_batch_norm, use_hidden_layer, num_unfreeze_layers)
         return model
 
