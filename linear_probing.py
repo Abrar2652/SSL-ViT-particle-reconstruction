@@ -1429,7 +1429,7 @@ def resnet_50(num_classes, classification_head):
     return ResNet50(num_classes=num_classes,classification_head=classification_head)
 
 def vit_model(num_classes, use_batch_norm, img_size, patch_size,model_name, use_hidden_layer):
-    encoder = vit.__dict__[model_name](img_size=[img_size],patch_size=patch_size)
+    encoder = globals()[model_name](img_size=[img_size],patch_size=patch_size)
     embed_dim = encoder.embed_dim
 
     return AddLinear(encoder, embed_dim, num_classes, use_batch_norm, use_hidden_layer)
@@ -1778,7 +1778,7 @@ def init_model(
         return model
     
     else:
-        encoder_ijepa = vit.__dict__[model_name](
+        encoder_ijepa = globals()[model_name](
             img_size=[img_size],
             patch_size=patch_size)
         embed_dim = encoder_ijepa.embed_dim
