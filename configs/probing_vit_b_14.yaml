@@ -6,7 +6,7 @@ data:
   num_workers: 2
   patch_size: 14
   pin_mem: true
-  root_path: /kaggle/working/Data/Dataset_normalized.h5 # Data path
+  root_path: /kaggle/working/Data/Dataset_Specific_labelled.h5 # Data path
 logging:
   folder: /kaggle/working/Logging/vit_base  # Logging folder
   write_tag: probing_ijepa
