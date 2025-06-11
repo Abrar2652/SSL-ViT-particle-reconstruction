@@ -23,7 +23,7 @@ def make_gsoc_dataset(
     root_path=None,
 ):
     
-    dataset = GsocDataset3( root_path, preload_size=batch_size)
+    dataset = GsocDataset3(root_path, preload_size=batch_size)
 
     dataset_size = len(dataset)
     indices = list(range(dataset_size))
@@ -156,36 +156,63 @@ def make_gsoc_dataset_iris(
 
     return train_dataset, train_data_loader, val_data_loader
 
+
+
 class Dataset4(torch.utils.data.Dataset):
     """Dataset Class"""
 
-    def __init__(self, file_path,mode,chunk_size = 32):
+    def __init__(self, file_path, mode, chunk_size=32):
         """
         Arguments:
             file_path (string): Path to the HDF5 file
-            mode (string): "train", "test" or "validation" set to choose from.
-            chunk_size: The chunk size to read the data from.
+            mode (string): "train" or "validation" to select subset of data
+            chunk_size: The chunk size to read the data from
         """
         self.file_path = file_path
         self.mode = mode
         self.chunk_size = chunk_size
 
         with h5py.File(self.file_path, 'r') as f:
-            self.length = len(f[f"{self.mode}_jet"]) // self.chunk_size
+            self.total_length = len(f['jet'])  # Total size of 'jet' dataset
+            # Define train/validation split (e.g., 80% train, 20% validation)
+            train_size = int(0.8 * self.total_length)
+            self.start_idx = 0 if mode == 'train' else train_size
+            self.end_idx = train_size if mode == 'train' else self.total_length
+            self.length = (self.end_idx - self.start_idx) // self.chunk_size
 
     def __len__(self):
         return self.length
 
     def open_hdf5(self):
-        self.file = h5py.File(self.file_path, 'r')
+        self.file = h5py.File(self.file_path, 'r', libver='latest', swmr=True)
 
     def __getitem__(self, idx: int):
-
         if not hasattr(self, 'file'):
             self.open_hdf5()
 
-        # Here idx is the chunk ID
-
-        imgs = torch.tensor(self.file[f'{self.mode}_jet'][idx*self.chunk_size:(idx+1)*self.chunk_size, ...].transpose(0,3,1,2))
-        labels = torch.tensor(self.file[f'{self.mode}_meta'][idx*self.chunk_size:(idx+1)*self.chunk_size, ...])
+        # Adjust index based on mode (train or validation)
+        global_idx = self.start_idx + idx * self.chunk_size
+        imgs = torch.tensor(
+            self.file['jet'][global_idx:global_idx + self.chunk_size, ...].transpose(0, 3, 1, 2)
+        )
+        labels = torch.tensor(
+            self.file['Y'][global_idx:global_idx + self.chunk_size, ...]
+        )
         return imgs, labels
+
+    def __del__(self):
+        if hasattr(self, 'file'):
+            self.file.close()
+
+
+
+
+
+
+
+
+
+
+
+
+

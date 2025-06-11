@@ -136,13 +136,13 @@ def main(args, resume_preempt=False):
     train_dataset = ProbingDataset(file_path=root_path, mode='train', chunk_size=chunk_size)
     val_dataset = ProbingDataset(file_path=root_path, mode='validation', chunk_size=chunk_size)
 
-    train_length = len(train_dataset)
-    val_length = len(val_dataset)
-    train_indices = list(range(int(train_length*95/100),train_length))
-    val_indices = list(range(int(val_length*75/100),val_length))
+    # train_length = len(train_dataset)
+    # val_length = len(val_dataset)
+    # train_indices = list(range(int(train_length*95/100),train_length))
+    # val_indices = list(range(int(val_length*75/100),val_length))
 
-    train_dataset = Subset(train_dataset, train_indices)
-    val_dataset = Subset(val_dataset, val_indices)
+    # train_dataset = Subset(train_dataset, train_indices)
+    # val_dataset = Subset(val_dataset, val_indices)
 
     # -- init dataLoaders
     train_data_loader = DataLoader(
@@ -150,7 +150,8 @@ def main(args, resume_preempt=False):
         batch_size=batch_size,  # Number of chunks to load in each batch
         shuffle=True,  # Shuffle the data between epochs
         collate_fn=collate,  # Use the custom collate function
-        num_workers=num_workers  # Number of subprocesses to use for data loading
+        num_workers=num_workers,  # Number of subprocesses to use for data loading
+	pin_memory=pin_mem
     )
     
     # Create the DataLoader
@@ -159,7 +160,8 @@ def main(args, resume_preempt=False):
         batch_size=batch_size,  # Number of chunks to load in each batch
         shuffle=False,  # Shuffle the data between epochs
         collate_fn=collate,  # Use the custom collate function
-        num_workers=num_workers  # Number of subprocesses to use for data loading
+        num_workers=num_workers,  # Number of subprocesses to use for data loading
+	pin_memory=pin_mem
     )
     
     logger.info('GSOC supervised data loaders created')
